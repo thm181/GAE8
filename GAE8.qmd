@@ -1,0 +1,89 @@
+---
+title: "GAE8"
+author: "Your name here"
+format: 
+  html:
+    theme: custom.scss
+    embed-resources: true
+    code-tools: true
+
+csl: ecology.csl
+
+editor: visual
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE)
+
+library(broom)
+library(patchwork)
+library(ggfortify)
+library(latex2exp)
+library(kableExtra)
+library(tidyverse)
+
+options(knitr.kable.NA = "")
+
+```
+
+## Scenario 1: Dinosaur sex?
+
+Establishing a dependable means to determine the sex of dinosaurs is one of the most sought after goals in dinosaur vertebrate paleontology [@Erickson2005]. Paleontologists would like to be able to determine the sex of dinosaurs from fossilized skeletal features. Living crocodilians belong to the Archosauria clade and are in the sister clade to the group including the Dinosauromorpha. Beginning in the 1950s, researchers have used living crocodilians as surrogates to look for sex-specific skeletal attributes that may prove useful in determining sex of fossil dinosaurs [@Romer1956].
+
+### Methods
+
+@Prieto-Marquez.etal2007 measured several characters that are thought to distinguish the sexes in American alligators, *Alligator mississipiensis*, one of the largest surviving reptiles. One of the characters measured was pelvic canal width. The researchers also knew that it is common for anatomical features to be strongly correlated, so they also measured snout-vent length to use as a covariate to correct for the size of alligator when comparing pelvic canal width among individuals.
+
+#### Statistical Methods
+
+```{r }
+#| label: dataImportAlligators
+
+# Metadata for alligator.csv:
+#____________________________________
+# sex - sex of the alligator
+# snoutvent - snout-vent length (m)
+# pelvicwidth - pelvic canal width (cm)
+#____________________________________
+
+
+alligator <- read_csv("alligator.csv", show_col_types = FALSE)
+```
+
+## Scenario 2: Fish to Plants
+
+### Introduction
+
+Submerged macrophytes play a key role in shallow eutrophic lakes. However, in some subtropical lakes, benthivorous fishes dominate the fish assemblages and influence the growth of submerged plants. A comprehensive understanding of the direct and indirect effects of benthivorous fishes on submerged plants is important. @Li.etal2023 conducted mesocosm experiments to examine the effects of three densities of benthivorous fish, *Misgurnus anguillicaudatus*, on the water properties, the growth, asexual reproduction, and the germination of turions of *Potamogeton crispus* L.
+
+### Methods
+
+A single factorial design experiment was conducted with three densities of fish (FD), that is, 0, 1, and 4 M. anguillicaudatus (0, 7, and 28 g m−2), respectively (Figure S1). The densities were chosen based on observations during field surveys in lakes in the middle and lower reaches of the Yangtze River. At the beginning of the experiment, 192 shoots of plants were planted in 12 tanks; each tank contained 16 shoots, which were chosen based on observations during field surveys in Liangzi Lake. *M. anguillicaudatus* was added to the corresponding tanks 4 weeks after planting the shoots. Each tank was covered with thin gauze (5-mm mesh size) to prevent the fish from jumping out of the tank. During the experiment, the water temperature remained between 7.1°C and 31.2°C. Lake water was added daily to maintain a constant water level of 100 cm. The experiment ended when most of the brown and hardened turion developed during the late growth period of P. crispus. Each treatment included four replicates. The experiment lasted from 1 February to 21 May 2021.
+
+Water samples were meticulously collected weekly from each mesocosm throughout the experiment. An acrylic tube sampler was used to extract 1 L samples. Ammonia is the primary nitrogenous waste produced by fish so they used a colorimetric method using Nessler's reagent to determine ammonia nitrogen (NH4–N). As a surrogate for phytoplankton biomass, Chl a was measured using a handheld probe (HYDROLAB DS5; HACH).
+
+#### Statistical Methods
+
+```{r}
+#| label: LietalDataImport
+
+# Metadata for water_FD.csv:
+#____________________________________
+# ID - ID of individual enclosures
+# Time - weeks of the experiment
+# FD - fish density
+# NH4-N - nitrate as ammonia (mg/L)
+# Chla - chlorifyll a (micrograms/L)
+#____________________________________
+
+LiData <- read_csv("water_FD.csv", 
+                   show_col_types = FALSE,
+                   )
+
+```
+
+## Results
+
+## References
